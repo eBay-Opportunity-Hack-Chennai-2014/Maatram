@@ -18,6 +18,7 @@
 */
 package com.ngo.implementation.utility;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Game;
 import com.ngo.model.Match;
@@ -99,7 +100,7 @@ public class UtilityDaoImpl implements UtilityDao {
 				playerList.add(player);
 			}
 			else{
-				throw new SportsException("No such player "+temp);
+				throw new NGOException("No such player "+temp);
 			}
 		}
 		return playerList;
@@ -136,7 +137,7 @@ public class UtilityDaoImpl implements UtilityDao {
 				}
 			}
 			if(i==gameTeams.size()){
-				throw new SportsException("Team "+teamName+" is not playing this game (OR) No such team");
+				throw new NGOException("Team "+teamName+" is not playing this game (OR) No such team");
 			}
 		}
 		return teams;
@@ -182,9 +183,22 @@ public class UtilityDaoImpl implements UtilityDao {
 		return ids;
 	}
 	
-	public User getUser(String username) {
+	public User getUser(String name, String dob, String address) {
 		Session session = getSession();
-		List<User> userList = session.createCriteria(User.class).add(Restrictions.eq("username", username)).list();
+		List<User> userList = session.createCriteria(User.class).add(Restrictions.eq("name", name)).add(Restrictions.eq("address", address)).add(Restrictions.eq("dob", dob)).list();
+		
+		if(userList.size()==1){
+			return userList.get(0);
+		}
+		return null;
+	}
+	
+	public User getUser(String name, String password) {
+		Session session = getSession();
+		if(password == null || password.isEmpty()){
+			return null;
+		}
+		List<User> userList = session.createCriteria(User.class).add(Restrictions.eq("name", name)).add(Restrictions.eq("password", password)).list();
 		
 		if(userList.size()==1){
 			return userList.get(0);

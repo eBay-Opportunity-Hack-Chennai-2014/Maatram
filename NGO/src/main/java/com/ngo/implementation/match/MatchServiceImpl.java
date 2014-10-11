@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.match.MatchDao;
 import com.ngo.interfaces.match.MatchService;
 import com.ngo.interfaces.team.TeamDao;
@@ -58,7 +58,7 @@ public class MatchServiceImpl implements MatchService{
 	public int addMatch(MatchForm matchForm){
 		Game game = utilityDao.getGame(matchForm.getGame().getGameName(), matchForm.getGame().getGameCategory());
 		if(game == null){
-			throw new SportsException("No such game");
+			throw new NGOException("No such game");
 		}
 		List<Team> teams = utilityDao.getTeams(matchForm.getTeams(),teamDao.getTeamsByGame(game,false));
 		List<Match> matches = matchDao.getMatchesByGame(game, matchForm.getRound());
@@ -70,7 +70,7 @@ public class MatchServiceImpl implements MatchService{
 			return matchDao.addMatch(matchForm.getRound(), matchForm.getScheduledTime(), matchForm.getLocation(), matchForm.getStatus(), matchForm.getWinner(), matchForm.getScore(), matchForm.isShow(), teams, game);
 		}
 		else{
-			throw new SportsException("Match already scheduled");
+			throw new NGOException("Match already scheduled");
 		}
 	}
 
@@ -81,11 +81,11 @@ public class MatchServiceImpl implements MatchService{
 				return matchDao.modifyMatch(match, matchForm.getRound(), matchForm.getScheduledTime(), matchForm.getLocation(), matchForm.getStatus(), matchForm.getWinner(), matchForm.getScore(), matchForm.isShow());
 			}
 			else{
-				throw new SportsException("Cannot change Game Name, Category");
+				throw new NGOException("Cannot change Game Name, Category");
 			}
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 
@@ -99,16 +99,16 @@ public class MatchServiceImpl implements MatchService{
 			match = utilityDao.getMatch(match.getGame(),teams,matches);
 			if(match!=null){
 				if(match.getTeams().size()==2){
-					throw new SportsException("Cannot Add Team, Match already has 2 teams");
+					throw new NGOException("Cannot Add Team, Match already has 2 teams");
 				}
 				return matchDao.modifyMatchAddTeams(match, teams);
 			}
 			else{
-				throw new SportsException("Team already playing same game in some other match");
+				throw new NGOException("Team already playing same game in some other match");
 			}
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 
@@ -119,17 +119,17 @@ public class MatchServiceImpl implements MatchService{
 			teamNames.add(teamName);
 			List<Team> teams = utilityDao.getTeams(teamNames,teamDao.getTeamsByGame(match.getGame(),false));
 			if(match.getTeams().size()==0){
-				throw new SportsException("Cannot Delete Team, Match has 0 teams");
+				throw new NGOException("Cannot Delete Team, Match has 0 teams");
 			}
 			if(teams.size()<=2){
 				return matchDao.modifyMatchDeleteTeams(match, teams);
 			}
 			else{
-				throw new SportsException("Cannot Delete more than 2 teams");
+				throw new NGOException("Cannot Delete more than 2 teams");
 			}
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 
@@ -139,7 +139,7 @@ public class MatchServiceImpl implements MatchService{
 			return matchDao.deleteMatch(match);
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 
@@ -152,19 +152,19 @@ public class MatchServiceImpl implements MatchService{
 						return true;
 					}
 					else{
-						throw new SportsException("Match between same Teams");
+						throw new NGOException("Match between same Teams");
 					}
 				}
 				else{
-					throw new SportsException("Team(s) in Match "+id+" does not contain required number of players for this game");
+					throw new NGOException("Team(s) in Match "+id+" does not contain required number of players for this game");
 				}
 			}
 			else{
-				throw new SportsException("Match does not contain 2 teams");
+				throw new NGOException("Match does not contain 2 teams");
 			}
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 	
@@ -174,7 +174,7 @@ public class MatchServiceImpl implements MatchService{
 			return matchDao.modifyMatchModifyShow(match, toShow);
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 	
@@ -185,7 +185,7 @@ public class MatchServiceImpl implements MatchService{
 			return matchDao.modifyMatchFromAdmin(match, teams, matchForm.getRound(), matchForm.getScheduledTime(), matchForm.getLocation(), matchForm.getStatus(), matchForm.getWinner(), matchForm.getScore());
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 	
@@ -196,7 +196,7 @@ public class MatchServiceImpl implements MatchService{
 			return matchDao.modifyMatchFromAdmin(match, teams, simpleMatchForm.getRound(), simpleMatchForm.getScheduledTime(), simpleMatchForm.getLocation(), simpleMatchForm.getStatus(), simpleMatchForm.getWinner(), simpleMatchForm.getScore());
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 
@@ -221,7 +221,7 @@ public class MatchServiceImpl implements MatchService{
 			return emails;
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 	
@@ -237,7 +237,7 @@ public class MatchServiceImpl implements MatchService{
 			return matches;
 		}
 		else{
-			throw new SportsException("Game does not exist");
+			throw new NGOException("Game does not exist");
 		}
 	}
 	
@@ -257,7 +257,7 @@ public class MatchServiceImpl implements MatchService{
 			return match;
 		}
 		else{
-			throw new SportsException("Match does not exist");
+			throw new NGOException("Match does not exist");
 		}
 	}
 

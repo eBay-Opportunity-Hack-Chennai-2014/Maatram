@@ -25,7 +25,7 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.player.PlayerDao;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Game;
@@ -48,7 +48,7 @@ public class PlayerDaoImpl implements PlayerDao {
 		try {
 			session.save(player);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return player.getEmployeeId();
 	}
@@ -58,7 +58,7 @@ public class PlayerDaoImpl implements PlayerDao {
 		try{
 			session.update(player);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return player.getEmployeeId();
 	}
@@ -69,7 +69,7 @@ public class PlayerDaoImpl implements PlayerDao {
 			player.getGames().add(game);
 			session.update(player);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return player.getEmployeeId();
 	}
@@ -80,7 +80,7 @@ public class PlayerDaoImpl implements PlayerDao {
 			player.getGames().remove(game);
 			session.update(player);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return player.getEmployeeId();
 	}
@@ -91,7 +91,7 @@ public class PlayerDaoImpl implements PlayerDao {
 			player.setGames(games);
 			session.update(player);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 	}
 
@@ -100,7 +100,7 @@ public class PlayerDaoImpl implements PlayerDao {
 		try{
 			session.delete(player);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return player.getEmployeeId();
 	}

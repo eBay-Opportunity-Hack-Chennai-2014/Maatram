@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.player.PlayerDao;
 import com.ngo.interfaces.registration.RegistrationDao;
 import com.ngo.interfaces.team.TeamDao;
@@ -109,23 +109,23 @@ public class TeamServiceImpl implements TeamService {
 							}
 						}
 						else{
-							throw new SportsException("Player(s) is playing same game for another team");
+							throw new NGOException("Player(s) is playing same game for another team");
 						}
 					}
 					else{
-						throw new SportsException("Number of players mismatch with game's number of players<br>Minimum number of players "+game.getMinNoPlayers()+"<br>Maximum number of players "+game.getMaxNoPlayers());
+						throw new NGOException("Number of players mismatch with game's number of players<br>Minimum number of players "+game.getMinNoPlayers()+"<br>Maximum number of players "+game.getMaxNoPlayers());
 					}
 				}
 				else{
-					throw new SportsException("Someone else took the same team name, take another one");
+					throw new NGOException("Someone else took the same team name, take another one");
 				}
 			}
 			else{
-				throw new SportsException("HEY! You are entangled!<br>You have already registered a team for same game from this computer<br>Contact Event organiser with a genuine reason");
+				throw new NGOException("HEY! You are entangled!<br>You have already registered a team for same game from this computer<br>Contact Event organiser with a genuine reason");
 			}
 		}
 		else{
-			throw new SportsException("No such Game");
+			throw new NGOException("No such Game");
 		}
 		return -1;
 	}
@@ -136,7 +136,7 @@ public class TeamServiceImpl implements TeamService {
 			return teamDao.modifyTeam(team, teamForm.getName(), teamForm.getRating(), teamForm.getScore(), teamForm.getRound());
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 	
@@ -146,7 +146,7 @@ public class TeamServiceImpl implements TeamService {
 			return teamDao.modifyTeam(team, teamFormSimple.getName(), teamFormSimple.getScore(), teamFormSimple.getRound());
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 
@@ -160,11 +160,11 @@ public class TeamServiceImpl implements TeamService {
 				return teamDao.modifyTeamAddPlayer(team, player);
 			}
 			else{
-				throw new SportsException("Player is playing the same game in another team");
+				throw new NGOException("Player is playing the same game in another team");
 			}
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 
@@ -173,17 +173,17 @@ public class TeamServiceImpl implements TeamService {
 		if(team!=null){
 			Player player = utilityDao.getPlayer(Integer.parseInt(employeeId));
 			if(player==null){
-				throw new SportsException("No such Player");
+				throw new NGOException("No such Player");
 			}
 			if(!team.getPlayers().contains(player)){
-				throw new SportsException("No such player in this team");
+				throw new NGOException("No such player in this team");
 			}
 			List<Player> playersList = new ArrayList<Player>(1);
 			playersList.add(player);
 			return teamDao.modifyTeamDeletePlayer(team, player);
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 
@@ -193,7 +193,7 @@ public class TeamServiceImpl implements TeamService {
 			return teamDao.deleteTeam(team);
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 	
@@ -203,7 +203,7 @@ public class TeamServiceImpl implements TeamService {
 			return teamDao.modifyShow(team, toShow);
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 	
@@ -221,23 +221,23 @@ public class TeamServiceImpl implements TeamService {
 							return teamDao.modifyTeamFromAdmin(team, teamForm.getName(), teamForm.getRating(), teamForm.getScore(), teamForm.getRound(), playersList);						
 						}
 						else{
-							throw new SportsException("Player(s) is playing the same game for another team");
+							throw new NGOException("Player(s) is playing the same game for another team");
 						}
 					}
 					else{
-						throw new SportsException("Number of players mismatch with game's number of players<br>Minimum number of players "+team.getGame().getMinNoPlayers()+"<br>Maximum number of players "+team.getGame().getMaxNoPlayers());
+						throw new NGOException("Number of players mismatch with game's number of players<br>Minimum number of players "+team.getGame().getMinNoPlayers()+"<br>Maximum number of players "+team.getGame().getMaxNoPlayers());
 					}
 				}
 				else{
-					throw new SportsException("Someone else took the same team name");
+					throw new NGOException("Someone else took the same team name");
 				}
 			}
 			else{
-				throw new SportsException("Player(s) does not exists");
+				throw new NGOException("Player(s) does not exists");
 			}
 		}
 		else{
-			throw new SportsException("No such Team");
+			throw new NGOException("No such Team");
 		}
 	}
 	
@@ -247,7 +247,7 @@ public class TeamServiceImpl implements TeamService {
 			return teamDao.getTeamsByGame(game,showCriteria);
 		}
 		else{
-			throw new SportsException("Game does not exists");
+			throw new NGOException("Game does not exists");
 		}
 	}
 	
@@ -258,7 +258,7 @@ public class TeamServiceImpl implements TeamService {
 			return teams;
 		}
 		else{
-			throw new SportsException("Match does not exists");
+			throw new NGOException("Match does not exists");
 		}
 	}
 	
@@ -275,7 +275,7 @@ public class TeamServiceImpl implements TeamService {
 			return team;
 		}
 		else{
-			throw new SportsException("No such team");
+			throw new NGOException("No such team");
 		}
 	}
 

@@ -19,6 +19,7 @@
 package com.ngo.interfaces.utility;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.classic.Session;
@@ -49,11 +50,14 @@ public interface UtilityDao {
 	public List<Team> getTeams(List<String> teams, List<Team> gameTeams);
 	public Match getMatch(Game game, List<Team> teams, List<Match> matches);
 	public Match getMatch(int id);
-	public User getUser(String username);
-	public User getUser(int id);
-	public List<User> getUsers();
 	public Registration getRegistration(String ipAddress, Game game);
 	
 	public List<Integer> getGameIds();
+	
+	
+	public User getUser(String name, String dob, String address);
+	public User getUser(int id);
+	public List<User> getUsers();
+	public User getUser(String name, String password);
 
 }

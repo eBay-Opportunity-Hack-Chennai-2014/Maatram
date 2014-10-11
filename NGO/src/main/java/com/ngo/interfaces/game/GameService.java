@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.model.Game;
 import com.ngo.webservice.game.GameForm;
 

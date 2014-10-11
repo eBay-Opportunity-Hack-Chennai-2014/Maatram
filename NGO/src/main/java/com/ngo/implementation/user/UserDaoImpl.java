@@ -25,7 +25,7 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.player.PlayerDao;
 import com.ngo.interfaces.user.UserDao;
 import com.ngo.interfaces.utility.UtilityDao;
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao{
 		try {
 			session.save(user);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return user.getId();
 	}
@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDao{
 		try{
 			session.update(user);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return user.getId();
 	}
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao{
 		try{
 			session.delete(user);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return user.getId();
 	}

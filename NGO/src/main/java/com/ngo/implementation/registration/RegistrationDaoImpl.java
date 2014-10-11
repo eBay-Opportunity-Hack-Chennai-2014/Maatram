@@ -25,7 +25,7 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.player.PlayerDao;
 import com.ngo.interfaces.registration.RegistrationDao;
 import com.ngo.interfaces.user.UserDao;
@@ -53,7 +53,7 @@ public class RegistrationDaoImpl implements RegistrationDao{
 		try {
 			session.save(registration);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return registration.getId();
 	}

@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.player.PlayerDao;
 import com.ngo.interfaces.player.PlayerService;
 import com.ngo.interfaces.utility.UtilityDao;
@@ -57,7 +57,7 @@ public class PlayerServiceImpl implements PlayerService{
 	public int addPlayer(PlayerForm playerForm){
 		Player player = utilityDao.getPlayer(playerForm.getEmployeeId());
 		if(player != null){
-			throw new SportsException("Player already exists");
+			throw new NGOException("Player already exists");
 		}
 		if(playerForm.getGames().size()==0){
 			player = new Player();
@@ -76,7 +76,7 @@ public class PlayerServiceImpl implements PlayerService{
 			for(GameFormWithoutNumberOfPlayers tempGame: playerForm.getGames()){
 				Game game = utilityDao.getGame(tempGame.getGameName(), tempGame.getGameCategory());
 				if(game == null){
-					throw new SportsException("No such Game");
+					throw new NGOException("No such Game");
 				}
 				playerDao.modifyPlayerAddGame(player, game);
 			}
@@ -87,7 +87,7 @@ public class PlayerServiceImpl implements PlayerService{
 	public int modifyPlayer(int employeeId, PlayerForm playerForm){
 		Player player = utilityDao.getPlayer(employeeId);
 		if(player == null){
-			throw new SportsException("Player does not exist");
+			throw new NGOException("Player does not exist");
 		}
 		player.setEmployeeName(playerForm.getEmployeeName());
 		player.setEmployeeEmail(playerForm.getEmployeeEmail());
@@ -97,12 +97,12 @@ public class PlayerServiceImpl implements PlayerService{
 	public int modifyPlayerAddGame(int employeeId, GameFormWithoutNumberOfPlayers gameFormWithoutNumberOfPlayers){
 		Player player = utilityDao.getPlayer(employeeId);
 		if(player == null){
-			throw new SportsException("Player does not exist");
+			throw new NGOException("Player does not exist");
 		}
 		
 		Game game = utilityDao.getGame(gameFormWithoutNumberOfPlayers.getGameName(), gameFormWithoutNumberOfPlayers.getGameCategory());
 		if(game == null){
-			throw new SportsException("No such Game");
+			throw new NGOException("No such Game");
 		}
 		
 		boolean checkGameFlag = false;
@@ -113,7 +113,7 @@ public class PlayerServiceImpl implements PlayerService{
 			}
 		}
 		if(checkGameFlag == true){
-			throw new SportsException("Player already playing this Game");
+			throw new NGOException("Player already playing this Game");
 		}
 		
 		return playerDao.modifyPlayerAddGame(player, game);
@@ -122,12 +122,12 @@ public class PlayerServiceImpl implements PlayerService{
 	public int modifyPlayerDeleteGame(int employeeId, GameFormWithoutNumberOfPlayers gameFormWithoutNumberOfPlayers){
 		Player player = utilityDao.getPlayer(employeeId);
 		if(player == null){
-			throw new SportsException("Player does not exist");
+			throw new NGOException("Player does not exist");
 		}
 		
 		Game game = utilityDao.getGame(gameFormWithoutNumberOfPlayers.getGameName(), gameFormWithoutNumberOfPlayers.getGameCategory());
 		if(game == null){
-			throw new SportsException("No such Game");
+			throw new NGOException("No such Game");
 		}
 		
 		boolean checkGameFlag = false;
@@ -138,7 +138,7 @@ public class PlayerServiceImpl implements PlayerService{
 			}
 		}
 		if(checkGameFlag == false){
-			throw new SportsException("Player is not playing this Game");
+			throw new NGOException("Player is not playing this Game");
 		}
 		
 		return playerDao.modifyPlayerDeleteGame(player, game);
@@ -147,7 +147,7 @@ public class PlayerServiceImpl implements PlayerService{
 	public int deletePlayer(int employeeId){
 		Player player = utilityDao.getPlayer(employeeId);
 		if(player == null){
-			throw new SportsException("Player does not exist");
+			throw new NGOException("Player does not exist");
 		}
 		return playerDao.deletePlayer(player);
 	}
@@ -155,7 +155,7 @@ public class PlayerServiceImpl implements PlayerService{
 	public int modifyPlayerFromAdmin(int employeeId, PlayerForm playerForm){
 		Player player = utilityDao.getPlayer(playerForm.getEmployeeId());
 		if(player == null){
-			throw new SportsException("Player does not exists");
+			throw new NGOException("Player does not exists");
 		}
 		if(playerForm.getGames().size()==0){
 			player.setEmployeeName(playerForm.getEmployeeName());
@@ -171,7 +171,7 @@ public class PlayerServiceImpl implements PlayerService{
 			for(GameFormWithoutNumberOfPlayers tempGame: playerForm.getGames()){
 				Game game = utilityDao.getGame(tempGame.getGameName(), tempGame.getGameCategory());
 				if(game == null){
-					throw new SportsException("No such Game");
+					throw new NGOException("No such Game");
 				}
 				games.add(game);
 			}
@@ -195,7 +195,7 @@ public class PlayerServiceImpl implements PlayerService{
 			return emails;
 		}
 		else{
-			throw new SportsException("Team does not exist");
+			throw new NGOException("Team does not exist");
 		}
 	}
 
@@ -205,7 +205,7 @@ public class PlayerServiceImpl implements PlayerService{
 			return playerDao.getPlayersByTeam(team);
 		}
 		else{
-			throw new SportsException("Team does not exist");
+			throw new NGOException("Team does not exist");
 		}
 	}
 	
@@ -215,7 +215,7 @@ public class PlayerServiceImpl implements PlayerService{
 			return playerDao.getPlayersByGame(game);
 		}
 		else{
-			throw new SportsException("Game does not exist");
+			throw new NGOException("Game does not exist");
 		}
 	}
 

@@ -27,7 +27,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.team.TeamDao;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Game;
@@ -52,7 +52,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.save(team);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -67,7 +67,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.save(team);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -81,7 +81,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.save(team);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -93,7 +93,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.save(team);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -105,7 +105,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.save(team);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -117,7 +117,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.update(team);
 		}
 		catch(HibernateException e)		{
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -128,7 +128,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.delete(team);
 		}
 		catch(HibernateException e)		{
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -144,7 +144,7 @@ public class TeamDaoImpl implements TeamDao {
 			session.update(team);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return team.getId();
 	}
@@ -161,7 +161,7 @@ public class TeamDaoImpl implements TeamDao {
 			}
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return teams;
 	}

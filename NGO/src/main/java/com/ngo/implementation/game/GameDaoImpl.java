@@ -25,7 +25,7 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.game.GameDao;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Game;
@@ -46,7 +46,7 @@ public class GameDaoImpl implements GameDao {
 		try {
 			session.save(game);
 		} catch (HibernateException e) {
-			throw new SportsException("OOPS! There seems to be a problem with database");
+			throw new NGOException("OOPS! There seems to be a problem with database");
 		}
 		return game.getId();
 	}
@@ -56,7 +56,7 @@ public class GameDaoImpl implements GameDao {
 		try {
 			session.saveOrUpdate(game);
 		} catch (HibernateException e) {
-			throw new SportsException("OOPS! There seems to be a problem with database");
+			throw new NGOException("OOPS! There seems to be a problem with database");
 		}
 		return game.getId();
 	}
@@ -66,7 +66,7 @@ public class GameDaoImpl implements GameDao {
 		try {
 			session.delete(game);
 		} catch (HibernateException e) {
-			throw new SportsException("OOPS! There seems to be a problem with database");
+			throw new NGOException("OOPS! There seems to be a problem with database");
 		}
 		return game.getId();
 	}
@@ -78,7 +78,7 @@ public class GameDaoImpl implements GameDao {
 			games = session.createCriteria(Game.class).setCacheable(true).list();
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with database");
+			throw new NGOException("OOPS! There seems to be a problem with database");
 		}
 		return games;
 	}

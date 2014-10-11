@@ -27,7 +27,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.match.MatchDao;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Game;
@@ -62,7 +62,7 @@ public class MatchDaoImpl implements MatchDao {
 			session.save(match);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -80,7 +80,7 @@ public class MatchDaoImpl implements MatchDao {
 			session.save(match);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -98,7 +98,7 @@ public class MatchDaoImpl implements MatchDao {
 			}
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -110,7 +110,7 @@ public class MatchDaoImpl implements MatchDao {
 			session.update(match);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -121,7 +121,7 @@ public class MatchDaoImpl implements MatchDao {
 			session.delete(match);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -151,7 +151,7 @@ public class MatchDaoImpl implements MatchDao {
 			session.update(match);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -169,7 +169,7 @@ public class MatchDaoImpl implements MatchDao {
 			session.save(match);
 		}
 		catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return match.getId();
 	}
@@ -185,7 +185,7 @@ public class MatchDaoImpl implements MatchDao {
 				matches = session.createCriteria(Match.class).add(Restrictions.in("game.id", utilityDao.getGameIds())).addOrder(Order.desc("round")).addOrder(Order.asc("id")).setCacheable(true).list();
 			}
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		for(Match match: matches){
 			match.getGame().getName();

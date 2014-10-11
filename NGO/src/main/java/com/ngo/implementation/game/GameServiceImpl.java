@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.game.GameDao;
 import com.ngo.interfaces.game.GameService;
 import com.ngo.interfaces.utility.UtilityDao;
@@ -53,7 +53,7 @@ public class GameServiceImpl implements GameService {
 	 */
 	public int addGame(GameForm gameForm){
 		if(utilityDao.getGame(gameForm.getName(), gameForm.getCategory()) != null){
-			throw new SportsException("This Game Already Exists");
+			throw new NGOException("This Game Already Exists");
 		}
 		Game game = new Game(gameForm.getName(),gameForm.getCategory(),gameForm.getMinNoPlayers(),gameForm.getMaxNoPlayers());
 		return gameDao.addGame(game);
@@ -66,7 +66,7 @@ public class GameServiceImpl implements GameService {
 	public int modifyGame(int id, GameForm gameForm){
 		Game game = utilityDao.getGame(id);
 		if(game == null){
-			throw new SportsException("No such Game");
+			throw new NGOException("No such Game");
 		}
 		if(game.getName().equalsIgnoreCase(gameForm.getName()) && game.getCategory().equalsIgnoreCase(gameForm.getCategory())){
 			game.setMinNoPlayers(gameForm.getMinNoPlayers());
@@ -74,7 +74,7 @@ public class GameServiceImpl implements GameService {
 			return gameDao.modifyGame(game);
 		}
 		else{
-			throw new SportsException("You cannot modify Name, Category");
+			throw new NGOException("You cannot modify Name, Category");
 		}
 	}
 
@@ -84,7 +84,7 @@ public class GameServiceImpl implements GameService {
 	public int deleteGame(int id){
 		Game game = utilityDao.getGame(id);
 		if(game == null){
-			throw new SportsException("No such Game");
+			throw new NGOException("No such Game");
 		}
 		return gameDao.deleteGame(game);
 	}
@@ -99,7 +99,7 @@ public class GameServiceImpl implements GameService {
 			return gameDao.getGamesByPlayer(player);
 		}
 		else{
-			throw new SportsException("Player does not exist");
+			throw new NGOException("Player does not exist");
 		}
 	}
 	

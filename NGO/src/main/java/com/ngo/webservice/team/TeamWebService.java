@@ -40,7 +40,7 @@ import org.springframework.stereotype.Component;
 
 import com.ngo.dto.PlayerWrapper;
 import com.ngo.exception.RESTException;
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.player.PlayerService;
 import com.ngo.interfaces.team.TeamService;
 import com.ngo.model.Team;
@@ -78,7 +78,7 @@ public class TeamWebService {
 				}
 			}
 			else{
-				throw new SportsException("Registrations are not yet OPEN!");
+				throw new NGOException("Registrations are not yet OPEN!");
 			}
 /*			teamForm.getPlayers().remove(0);*/
 		}

@@ -23,7 +23,7 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ngo.exception.SportsException;
+import com.ngo.exception.NGOException;
 import com.ngo.interfaces.feedback.FeedbackDao;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Feedback;
@@ -44,7 +44,7 @@ public class FeedbackDaoImpl implements FeedbackDao{
 		try {
 			session.save(feedback);
 		}catch(HibernateException e){
-			throw new SportsException("OOPS! There seems to be a problem with the database");
+			throw new NGOException("OOPS! There seems to be a problem with the database");
 		}
 		return feedback.getId();
 	}
