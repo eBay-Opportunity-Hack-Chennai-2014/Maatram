@@ -30,6 +30,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ngo.exception.NGOException;
 import com.ngo.interfaces.utility.UtilityDao;
+import com.ngo.model.Event;
 import com.ngo.model.Game;
 import com.ngo.model.Match;
 import com.ngo.model.Player;
@@ -225,6 +226,12 @@ public class UtilityDaoImpl implements UtilityDao {
 				return registration;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public Event getEvent(int id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

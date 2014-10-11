@@ -35,6 +35,9 @@
 				<value>com.ngo.model.User</value>
 				<value>com.ngo.model.Registration</value>
 				<value>com.ngo.model.DonationCategories</value>
+				<value>com.ngo.model.Organization</value>
+				<value>com.ngo.model.Event</value>
+				<value>com.ngo.model.Contribution</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

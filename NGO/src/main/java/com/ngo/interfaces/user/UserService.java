@@ -3,8 +3,8 @@ package com.ngo.interfaces.user;
 import java.util.List;
 
 import com.ngo.model.User;
-import com.ngo.webservice.people.UserForm;
-import com.ngo.webservice.people.UserFormForChecking;
+import com.ngo.webservice.user.UserForm;
+import com.ngo.webservice.user.UserFormForChecking;
 
 public interface UserService {
 

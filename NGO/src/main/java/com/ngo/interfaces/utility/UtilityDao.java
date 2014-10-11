@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.hibernate.classic.Session;
 
+import com.ngo.model.Event;
 import com.ngo.model.Game;
 import com.ngo.model.Match;
 import com.ngo.model.Player;
@@ -59,5 +60,9 @@ public interface UtilityDao {
 	public User getUser(int id);
 	public List<User> getUsers();
 	public User getUser(String name, String password);
+	
+	public Event getEvent(int id);
+	
+	
 
 }

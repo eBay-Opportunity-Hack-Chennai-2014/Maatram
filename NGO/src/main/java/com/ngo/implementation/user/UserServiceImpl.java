@@ -11,8 +11,8 @@ import com.ngo.interfaces.user.UserDao;
 import com.ngo.interfaces.user.UserService;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.User;
-import com.ngo.webservice.people.UserForm;
-import com.ngo.webservice.people.UserFormForChecking;
+import com.ngo.webservice.user.UserForm;
+import com.ngo.webservice.user.UserFormForChecking;
 
 @Component
 @Transactional
@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
 		user.setEmail(userForm.getEmail());
 		user.setPhone(userForm.getPhone());
 		user.setPassword(userForm.getPassword());
+		user.setBloodGroup(userForm.getBloodGroup());
 		return userDao.addUser(user);
 	}
 
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService{
 		user.setEmail(userForm.getEmail());
 		user.setPhone(userForm.getPhone());
 		user.setPassword(userForm.getPassword());
+		user.setBloodGroup(userForm.getBloodGroup());
 		return userDao.modifyUser(user);
 	}
 
