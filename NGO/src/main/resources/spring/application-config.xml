@@ -34,6 +34,7 @@
 				<value>com.ngo.model.Feedback</value>
 				<value>com.ngo.model.User</value>
 				<value>com.ngo.model.Registration</value>
+				<value>com.ngo.model.DonationCategories</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
