@@ -1,25 +1,9 @@
 package com.ngo.webservice.event;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.GenericGenerator;
-
-import com.ngo.model.Contribution;
-import com.ngo.model.User;
-
 public class EventForm {
 	
-	private int id; //event id
-	
+	private String title;
+	private String description;
 	private String category;
 	
 	private String location;
@@ -29,13 +13,37 @@ public class EventForm {
 	private String resourceAcquired;
 	
 	private String resourceNeeded;
+	
+	private int month;
 
-	public int getId() {
-		return id;
+	private int year;
+	
+	private int org_id;
+
+	
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getOrg_id() {
+		return org_id;
+	}
+
+	public void setOrg_id(int org_id) {
+		this.org_id = org_id;
 	}
 
 	public String getCategory() {
@@ -77,5 +85,22 @@ public class EventForm {
 	public void setResourceNeeded(String resourceNeeded) {
 		this.resourceNeeded = resourceNeeded;
 	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
 	
 }

@@ -12,14 +12,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ngo.exception.RESTException;
 import com.ngo.interfaces.event.EventService;
 import com.ngo.interfaces.user.UserService;
 import com.ngo.model.Event;
 import com.ngo.model.User;
+import com.ngo.webservice.user.UserForm;
 
 @Component
 @Path("/event")
@@ -42,24 +45,41 @@ public class EventWebService {
 	}
 	
 	@POST
-	@Path("/add/{event}")
-	public int addEvent(@PathParam("event") EventForm event){
-		return eventService.addEvent(event);
-		
+	public Response addUser(EventForm event) {
+		int tempId;
+		try{
+			tempId = eventService.addEvent(event);
+		}
+		catch(Exception e){
+			throw new RESTException(e.getMessage());
+		}
+		return Response.status(200).entity(tempId).build();
 	}
 	
 	@PUT
-	@Path("/update/{event}")
-	public void updateEvent(@PathParam("event") EventForm event){
-		 eventService.updateEvent(event);
-		
+	@Path("/{id}")
+	public Response updateEvent(@PathParam("id") int id, EventForm event) {
+		int tempId;
+		try{
+			tempId = eventService.updateEvent(id,event);
+		}
+		catch(Exception e){
+			throw new RESTException(e.getMessage());
+		}
+		return Response.status(200).entity(tempId).build();
 	}
 	
 	@DELETE
-	@Path("/delete/{id}")
-	public void deleteEvent(@PathParam("id") int id){
-		 eventService.deleteEvent(id);
-		
+	@Path("/{id}")
+	public Response deleteEvent(@PathParam("id") int id) {
+		int tempId;
+		try{
+			tempId = eventService.deleteEvent(id);
+		}
+		catch(Exception e){
+			throw new RESTException(e.getMessage());
+		}
+		return Response.status(200).entity(tempId).build();
 	}
 	
 	

@@ -3,6 +3,8 @@ package com.ngo.implementation.event;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ngo.exception.NGOException;
 import com.ngo.interfaces.event.EventDao;
@@ -14,7 +16,8 @@ import com.ngo.model.User;
 import com.ngo.webservice.event.EventForm;
 import com.ngo.webservice.user.UserFormForChecking;
 
-
+@Component
+@Transactional
 public class EventServiceImpl implements EventService {
 
 	@Autowired
@@ -25,64 +28,68 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public int addEvent(EventForm eventF) {
+		
+		
 
-		Event event = utilityDao.getEvent(eventF.getId());
-		if (event != null)
-			throw new NGOException("Event already exists");
-
-		event = new Event();
+		Event event = new Event();
+		
+		event.setTitle(eventF.getTitle());
+		event.setDescription(eventF.getDescription());
 		event.setCategory(eventF.getCategory());
 		event.setDate(eventF.getDate());
-		event.setId(eventF.getId());
 		event.setLocation(eventF.getLocation());
 		event.setResourceAcquired(eventF.getResourceAcquired());
 		event.setResourceNeeded(eventF.getResourceNeeded());
+		event.setYear(eventF.getYear());
+		event.setMonth(eventF.getMonth());
+		event.setOrg_id(eventF.getOrg_id());
 
 		return eventDao.addEvent(event);
 	}
 
 	@Override
-	public void updateEvent(EventForm eventForm) {
-		Event event = utilityDao.getEvent(eventForm.getId());
+	public int updateEvent(int id, EventForm eventForm) {
+		Event event = utilityDao.getEvent(id);
 		if (event == null)
 			throw new NGOException("Event does n't exist!");
+		event.setTitle(eventForm.getTitle());
+		event.setDescription(eventForm.getDescription());
 		event.setCategory(eventForm.getCategory());
 		event.setDate(eventForm.getDate());
-		event.setId(eventForm.getId());
 		event.setLocation(eventForm.getLocation());
 		event.setResourceAcquired(eventForm.getResourceAcquired());
 		event.setResourceNeeded(eventForm.getResourceNeeded());
+		event.setYear(eventForm.getYear());
+		event.setMonth(eventForm.getMonth());
+		event.setOrg_id(eventForm.getOrg_id());
 		
-		eventDao.updateEvent(event);
+		return eventDao.updateEvent(event);
 
 	}
 
 	@Override
-	public void deleteEvent(int id) {
+	public int deleteEvent(int id) {
 		Event event = utilityDao.getEvent(id);
 		if (event == null)
 			throw new NGOException("Event does n't exist!");
-		eventDao.deleteEvent(id);
+		return eventDao.deleteEvent(event);
 	}
 
 	
 
 		@Override
 	public Event getEvent(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Event e = utilityDao.getEvent(id);
+		if( e == null)
+			throw new NGOException("Event does not exist!");
+		e.getContributions().size();
+		e.getUsers().size();
+		return e;
 	}
 
 	@Override
 	public List<Event> getEvents(String month, String year) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> getEvents(int org_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return eventDao.getEvents(month,year);
 	}
 
 }

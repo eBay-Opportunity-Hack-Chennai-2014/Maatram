@@ -10,11 +10,10 @@ public interface EventService {
 
 	//Core User functions
 	public int addEvent(EventForm event);
-	public void updateEvent(EventForm eventForm);
-	public void deleteEvent(int id);
+	public int updateEvent(int id,EventForm eventForm);
+	public int deleteEvent(int id);
 	
 	//Utility functions
-	public List<User> getEvents(int org_id);
 	public Event getEvent(int id);
 	public List<Event> getEvents(String month, String year);
 }

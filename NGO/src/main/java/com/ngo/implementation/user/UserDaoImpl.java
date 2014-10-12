@@ -18,20 +18,14 @@
 */
 package com.ngo.implementation.user;
 
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ngo.exception.NGOException;
-import com.ngo.interfaces.player.PlayerDao;
 import com.ngo.interfaces.user.UserDao;
 import com.ngo.interfaces.utility.UtilityDao;
-import com.ngo.model.Game;
-import com.ngo.model.Player;
-import com.ngo.model.Team;
 import com.ngo.model.User;
 
 /**

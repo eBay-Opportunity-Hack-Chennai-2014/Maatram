@@ -19,17 +19,11 @@
 package com.ngo.interfaces.utility;
 
 
-import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.classic.Session;
 
 import com.ngo.model.Event;
-import com.ngo.model.Game;
-import com.ngo.model.Match;
-import com.ngo.model.Player;
-import com.ngo.model.Registration;
-import com.ngo.model.Team;
 import com.ngo.model.User;
 
 /**
@@ -39,22 +33,6 @@ import com.ngo.model.User;
 public interface UtilityDao {
 
 	public Session getSession();
-	
-	public Game getGame(String name, String category);
-	public Game getGame(int id);
-	public Player getPlayer(int employeeId);
-	public Team getTeam(String name, Game game);
-	public Team getTeam(int id);
-	public List<Player> getPlayerList(List<Integer> players);
-	public boolean checkPlayers(List<Team> teams ,List<Player> playersList);
-	public boolean checkTeamName(List<Team> teams, String name);
-	public List<Team> getTeams(List<String> teams, List<Team> gameTeams);
-	public Match getMatch(Game game, List<Team> teams, List<Match> matches);
-	public Match getMatch(int id);
-	public Registration getRegistration(String ipAddress, Game game);
-	
-	public List<Integer> getGameIds();
-	
 	
 	public User getUser(String name, String dob, String address);
 	public User getUser(int id);

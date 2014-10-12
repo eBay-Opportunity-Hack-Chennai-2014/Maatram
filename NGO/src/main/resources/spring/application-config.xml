@@ -26,14 +26,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list value-type="java.lang.String">
-				<value>com.ngo.model.Game</value>
-				<value>com.ngo.model.Match</value>
-				<value>com.ngo.model.Player</value>
-				<value>com.ngo.model.Team</value>
-				<value>com.ngo.model.Monitor</value>
-				<value>com.ngo.model.Feedback</value>
 				<value>com.ngo.model.User</value>
-				<value>com.ngo.model.Registration</value>
 				<value>com.ngo.model.DonationCategories</value>
 				<value>com.ngo.model.Organization</value>
 				<value>com.ngo.model.Event</value>
