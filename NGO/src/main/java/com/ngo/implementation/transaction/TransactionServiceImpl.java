@@ -64,7 +64,14 @@ public class TransactionServiceImpl implements TransactionService{
 
 	@Override
 	public List<Transaction> getTransactions() {
-		return utilityDao.getAllTransaction();
+		List<Transaction> transactions = utilityDao.getAllTransaction();
+		for(Transaction transaction : transactions){
+			transaction.getToUser().getId();
+			transaction.getEvent().getContributions().size();
+			transaction.getFromUser().getId();
+			transaction.getEvent().getUsers().size();
+		}
+		return transactions;
 	}
 	
 	@Override
