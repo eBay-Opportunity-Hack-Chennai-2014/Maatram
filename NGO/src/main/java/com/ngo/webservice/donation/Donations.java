@@ -1,6 +1,6 @@
 package com.ngo.webservice.donation;
 
-import java.sql.Connection;
+import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,7 +44,7 @@ public class Donations {
 		String output = "";
 		//	Build Json from response from sql
 		// String output = "Jersey say Hello World!!! : " + ;  
-		Connection c=	 DatabaseConnection.getInstance().getConnection();
+		Connection c=	 (Connection) DatabaseConnection.getInstance().getConnection();
 		String selectStudents = "SELECT * FROM students";
 		Statement statement;
 		JSONArray stud = new JSONArray();
@@ -77,7 +77,7 @@ public class Donations {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	private void makeDonation (Contribution contribution){
-		Connection c=	 DatabaseConnection.getInstance().getConnection();
+		Connection c=	 (Connection) DatabaseConnection.getInstance().getConnection();
 		Statement statement;
 		try {
 			statement = c.createStatement();

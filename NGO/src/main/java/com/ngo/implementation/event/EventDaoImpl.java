@@ -48,14 +48,20 @@ public class EventDaoImpl implements EventDao{
 	public List<Event> getEvents(String month,String year){
 		Session session = utilityDao.getSession();
 		try{
+			int iMonth = Integer.parseInt(month);
+			int iYear = Integer.parseInt(year);
 			Criteria cr= session.createCriteria(Event.class);
-			cr = cr.add(Restrictions.eq("month", month));
-			cr = cr.add(Restrictions.eq("year", year));
+			cr = cr.add(Restrictions.eq("month", iMonth));
+			cr = cr.add(Restrictions.eq("year", iYear));
 			return cr.list();
 			
 			
 		}catch(HibernateException e){
 			throw new NGOException("OOPS! There seems to be a problem with the database");
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			return null;
 		}
 	}
 	

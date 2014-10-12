@@ -87,7 +87,12 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public List<Event> getEvents(String month, String year) {
-		return eventDao.getEvents(month,year);
+		List<Event> events = eventDao.getEvents(month,year);
+		for(Event event : events){
+			event.getContributions().size();
+			event.getUsers().size();
+		}
+		return events;
 	}
 
 }
