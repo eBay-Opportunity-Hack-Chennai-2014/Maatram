@@ -28,5 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/prakash-2282/Downloads/cors-filter-1.3.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
