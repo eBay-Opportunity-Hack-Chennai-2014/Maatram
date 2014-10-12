@@ -24,6 +24,7 @@ import java.util.List;
 import org.hibernate.classic.Session;
 
 import com.ngo.model.Event;
+import com.ngo.model.Transaction;
 import com.ngo.model.User;
 
 /**
@@ -41,6 +42,7 @@ public interface UtilityDao {
 	
 	public Event getEvent(int id);
 	
-	
+	public Transaction getTransaction(int id);
+	public List<Transaction> getAllTransaction();
 
 }

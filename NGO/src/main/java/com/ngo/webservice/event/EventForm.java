@@ -18,10 +18,6 @@ public class EventForm {
 
 	private int year;
 	
-	private int org_id;
-
-	
-
 	public String getTitle() {
 		return title;
 	}
@@ -36,14 +32,6 @@ public class EventForm {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getOrg_id() {
-		return org_id;
-	}
-
-	public void setOrg_id(int org_id) {
-		this.org_id = org_id;
 	}
 
 	public String getCategory() {

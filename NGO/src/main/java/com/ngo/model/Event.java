@@ -59,12 +59,9 @@ public class Event {
 	@Column(name = "year")
 	private int year;
 	
-	@Column(name = "org_id")
-	private int org_id;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+/*	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "organization_id")
-	private Organization organization;
+	private Organization organization;*/
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="organization_user",joinColumns={@JoinColumn(name="organization_id")},inverseJoinColumns={@JoinColumn(name="user_id")})
@@ -74,14 +71,6 @@ public class Event {
 	@JoinTable(name="event_contribution",joinColumns={@JoinColumn(name="event_id")},inverseJoinColumns={@JoinColumn(name="contribution_id")})
 	private List<Contribution> contributions = new ArrayList<Contribution>();
 	
-	public int getOrg_id() {
-		return org_id;
-	}
-
-	public void setOrg_id(int org_id) {
-		this.org_id = org_id;
-	}
-
 	public int getMonth() {
 		return month;
 	}
@@ -108,13 +97,13 @@ public class Event {
 		this.description = description;
 	}
 
-	public Organization getOrganization() {
+	/*public Organization getOrganization() {
 		return organization;
 	}
 
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
-	}
+	}*/
 
 	public int getYear() {
 		return year;

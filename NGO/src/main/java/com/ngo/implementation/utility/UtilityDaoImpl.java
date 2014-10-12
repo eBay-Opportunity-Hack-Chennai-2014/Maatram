@@ -31,6 +31,7 @@ import org.springframework.stereotype.Repository;
 import com.ngo.exception.NGOException;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.Event;
+import com.ngo.model.Transaction;
 import com.ngo.model.User;
 
 /**
@@ -91,5 +92,17 @@ public class UtilityDaoImpl implements UtilityDao {
 		return (Event) session.get(Event.class, id);
 	}
 
+	@Override
+	public Transaction getTransaction(int id) {
+		Session session = getSession();
+		return (Transaction) session.get(Transaction.class, id);
+	}
+
+	@Override
+	public List<Transaction> getAllTransaction() {
+		Session session = getSession();
+		List<Transaction> transactionList = session.createCriteria(Transaction.class).list();
+		return transactionList;
+	}
 
 }

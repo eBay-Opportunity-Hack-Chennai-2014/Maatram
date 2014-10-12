@@ -1,15 +1,15 @@
 package com.ngo.model;
 
 
+import java.sql.Date;
+
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,11 +33,17 @@ public class Transaction {
 	private int id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "from_user_id")
 	private User fromUser;
+
+	@Column(name = "amount")
+	private double amount;
+	
+	@Column(name = "date")
+	private Date date;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "to_user_id")
 	private User toUser;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -62,6 +68,14 @@ public class Transaction {
 		return id;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -72,6 +86,14 @@ public class Transaction {
 
 	public void setFromUser(User fromUser) {
 		this.fromUser = fromUser;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 	public User getToUser() {
@@ -121,5 +143,5 @@ public class Transaction {
 	public void setFromPasscode(String fromPasscode) {
 		this.fromPasscode = fromPasscode;
 	}
-	
+
 }

@@ -31,6 +31,7 @@
 				<value>com.ngo.model.Organization</value>
 				<value>com.ngo.model.Event</value>
 				<value>com.ngo.model.Contribution</value>
+				<value>com.ngo.model.Transaction</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

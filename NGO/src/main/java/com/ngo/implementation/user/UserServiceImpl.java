@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ngo.exception.NGOException;
-import com.ngo.interfaces.user.UserDao;
 import com.ngo.interfaces.user.UserService;
+import com.ngo.interfaces.user.UserDao;
 import com.ngo.interfaces.utility.UtilityDao;
 import com.ngo.model.User;
 import com.ngo.webservice.user.UserForm;

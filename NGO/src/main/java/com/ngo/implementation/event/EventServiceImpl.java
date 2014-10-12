@@ -42,7 +42,6 @@ public class EventServiceImpl implements EventService {
 		event.setResourceNeeded(eventF.getResourceNeeded());
 		event.setYear(eventF.getYear());
 		event.setMonth(eventF.getMonth());
-		event.setOrg_id(eventF.getOrg_id());
 
 		return eventDao.addEvent(event);
 	}
@@ -61,7 +60,6 @@ public class EventServiceImpl implements EventService {
 		event.setResourceNeeded(eventForm.getResourceNeeded());
 		event.setYear(eventForm.getYear());
 		event.setMonth(eventForm.getMonth());
-		event.setOrg_id(eventForm.getOrg_id());
 		
 		return eventDao.updateEvent(event);
 
