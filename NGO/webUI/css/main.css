@@ -1,0 +1,76 @@
+.submenu, .submenuEvents{
+	width: 100%;
+	padding:12px 0px 12px 20px;
+	margin-top: 1px;
+	border:1px solid #eee;
+	color:#428bca;
+}
+
+.submenu:hover, .submenuEvents:hover{
+	background-color:#eee;
+	cursor: pointer;
+
+	
+}
+
+.educate{
+	width: 100%;
+	clear:right;
+	margin-top:20px;
+	height : 180px;
+}
+
+.educatecontainer2{
+	float: left;
+	width: 300px;
+
+}
+
+.educatecontainer3{
+	float: right;
+	width: 150px;
+
+}
+
+.educatepic{
+	float :left;
+	height:100px;
+	margin-right:10px
+}
+
+.educatetittle{
+	float: left;
+
+}
+
+..educatedescription{
+
+}
+
+.educatebutton{
+
+	width: 120px;
+	margin-top: 5px;
+
+}
+p {
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;;
+    font-size: 18px;
+}
+
+.bs-callout+.bs-callout {
+margin-top: -5px;
+}
+.bs-callout-info {
+border-left-color: #5bc0de;
+}
+.bs-callout {
+padding: 20px;
+margin: 20px 0;
+margin-left: 10px;
+border: 1px solid #eee;
+border-left-width: 5px;
+border-radius: 3px;
+border-left-color:#5bc0de;
+}
+
